@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import RegistrationForm from './RegistrationForm';
+import BusinessInformationForm from './BusinessInformationForm';
+import './RegistrationForm.css';
+import './BusinessInformationForm.css';
 
 function App() {
+  const [isRegistrationForm, setIsRegistrationForm] = useState(true);
+
+  const handleFormSwitch = () => {
+    setIsRegistrationForm(!isRegistrationForm);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {isRegistrationForm ? (
+        <RegistrationForm onSwitch={handleFormSwitch} />
+      ) : (
+        <BusinessInformationForm onSwitch={handleFormSwitch} />
+      )}
     </div>
   );
 }
